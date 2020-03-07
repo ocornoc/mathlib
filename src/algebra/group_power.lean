@@ -313,17 +313,6 @@ by cases n; [exact f.map_pow _ _, exact (f.map_inv _).trans (congr_arg _ $ f.map
 theorem add_monoid_hom.map_gsmul (f : A →+ B) (a : A) (n : ℤ) : f (n • a) = n • f a :=
 f.to_multiplicative.map_gpow a n
 
-@[simp]
-lemma gsmul_int_int (a b : ℤ) : a • b = a * b :=
-int.induction_on a
-  (by rw [zero_gsmul, zero_mul])
-  (λ i ih, by rw [add_one_gsmul, ih, add_mul, one_mul])
-  (λ i ih, by rw [sub_eq_add_neg, add_gsmul, ih, neg_one_gsmul, add_mul, neg_one_mul])
-
-@[simp]
-theorem gsmul_one_int (n : ℤ) : n • (1 : ℤ) = n :=
-by cases n; simp
-
 end group
 
 open_locale smul
@@ -406,6 +395,9 @@ by rw [gsmul_eq_mul', gsmul_eq_mul', mul_assoc]
 
 theorem mul_gsmul_assoc [ring R] (a b : R) (n : ℤ) : n •ℤ (a * b) = n •ℤ a * b :=
 by rw [gsmul_eq_mul, gsmul_eq_mul, mul_assoc]
+
+@[simp]
+lemma gsmul_int_int (a b : ℤ) : a •ℤ b = a * b := by simp [gsmul_eq_mul]
 
 @[simp, move_cast] theorem int.cast_pow [ring R] (n : ℤ) (m : ℕ) : (↑(n ^ m) : R) = ↑n ^ m :=
 by induction m with m ih; [exact int.cast_one,
