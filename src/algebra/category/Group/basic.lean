@@ -127,7 +127,8 @@ lemma int_hom_ext
 begin
   ext,
   change ℤ at x,
-  rw ←gsmul_int_one x,
+  -- rw (show (x : ℤ) = gsmul x (1 : ℤ), by simp),
+  rw ←gsmul_one_int x,
   rw [add_monoid_hom.map_gsmul, add_monoid_hom.map_gsmul, w],
 end
 
