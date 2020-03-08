@@ -136,8 +136,9 @@ def mono_factorisation : mono_factorisation f :=
 
 noncomputable instance : has_image f :=
 { F := mono_factorisation f,
-  lift := image.lift,
-  lift_fac' := image.lift_fac }
+  is_image :=
+  { lift := image.lift,
+    lift_fac' := image.lift_fac } }
 
 noncomputable instance : has_images.{u} (Type u) :=
 { has_image := infer_instance }
